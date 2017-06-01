@@ -12,63 +12,19 @@ class Nexus extends Blitz {
 
         // Extend with modified Blitz Default Values
         options = extend({
-            api_url: "https://localhost:3400/",
-            auth_url: "https://localhost:7119/",
-            game: "warframe",
-            api_version: "v1"
+            api_url: "https://api.nexus-stats.com",
+            auth_url: "https://auth.nexus-stats.com"
         }, options)
 
         super(options)
     }
 
-
     /**
-     * Query method to easily create url from given params
+     * Get primary stats for specific item
      */
-    query(verb, query) {
-        let url = this.options.api_url
-
-        // Generate Base URL
-        url += this.options.game + '/'
-        url += this.options.api_version + '/'
-        url += query.resource + '/'
-        url += query.method
-
-        // Dynamically generate rest of URL
-        let prefix = "?"
-        for (var param in query) {
-            if (param !== "resource" && param !== "method") {
-                url += prefix + param + '=' + query[param]
-                prefix = "&"
-            }
-        }
-
-        // Replace spaces with standard encoding
-        url = url.replace(" ", "%20")
-
-        // Send Request
+    getItemStats(name, options) {
         return new Promise((resolve, reject) => {
-            this.connection.request(verb, url)
-                .then(res => resolve(res))
-                .catch(err => reject(err))
-        })
-    }
-
-
-    /**
-     * Sample method to get all stats for specific item
-     */
-    getItem(name, options) {
-        let query = {
-            resource: "items/" + name,
-            method: "statistics"
-        }
-
-        // Extend  with options if provided
-        if (options) query = extend(query, options)
-
-        return new Promise((resolve, reject) => {
-            this.query('GET', query)
+            this.get(`/warframe/v1/items/${name}/statistics`)
                 .then(res => resolve(res))
                 .catch(err => reject(err))
         })
