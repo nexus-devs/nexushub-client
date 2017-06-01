@@ -1,7 +1,7 @@
 'use strict'
 
 const extend = require('deep-extend')
-const Blitz = require('blitz-api')
+const Blitz = require('blitz-js-query')
 
 class Nexus extends Blitz {
 
