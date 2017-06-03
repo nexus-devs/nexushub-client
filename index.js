@@ -22,7 +22,7 @@ class Nexus extends Blitz {
     /**
      * Get primary stats for specific item
      */
-    getItemStats(name, options) {
+    getItemStats(name) {
         return new Promise((resolve, reject) => {
             this.get(`/warframe/v1/items/${name}/statistics`)
                 .then(res => resolve(JSON.parse(res.body)))
