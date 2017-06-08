@@ -13,6 +13,6 @@
   "author": "Kaptard",
   "license": "MIT",
   "dependencies": {
-    "blitz-js-query": "0.0.35"
+    "blitz-js-query": "0.0.36"
   }
 }
