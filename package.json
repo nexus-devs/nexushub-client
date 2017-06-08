@@ -1,6 +1,6 @@
 {
   "name": "nexus-stats-api",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "HTTP/Socket.io adapter for api.nexus-stats.com",
   "main": "index.js",
   "repository": {
