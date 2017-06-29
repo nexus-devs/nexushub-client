@@ -35,7 +35,7 @@ const blitz = new Blitz({key: value})
 | user_secret | null | User secret obtained via Auth-Node |
 | ignore_limiter | false | Whether or not to disable the default rate limit adaptions. Disabling this only makes sense if you connect as a user who won't face rate limits. If you disable it anyway, expect all your requests to get blocked. |
 
-<br> 
+<br>
 <br>
 
 ## API
@@ -45,7 +45,7 @@ nexus.getItemStats(name)
 ```
 >Get basic item statistics for a given item. Returns a promise with a statistics object.
 
-<br> 
+<br>
 
 ### Subscriptions
 Subscriptions allow you to receive real-time data whenever an item is updated. Updates trigger on in-game requests.
@@ -88,7 +88,6 @@ nexus.delete(url, body)
 ```
 >Sends a RESTful request to a certain URL (without domain) and returns a promise containing the response data.
 
-**Note:** this method returns the full response object. The response data is in `res.body` and is a `string` type that may need to be parsed before usage. <br>
 See the [blitz-js-query](https://github.com/nexus-devs/npm-blitz-query) documentation for further details on sending RESTful methods.
 
 <br>
