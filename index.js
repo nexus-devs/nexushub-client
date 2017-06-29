@@ -73,7 +73,7 @@ class Nexus extends Blitz {
      */
     getPlayerProfile(username) {
         return new Promise((resolve, reject) => {
-            this.get(`/warframe/v1/players/${username}/profile`
+            this.get(`/warframe/v1/players/${username}/profile`)
                 .then(res => resolve(res))
                 .catch(err => reject(err))
         })
