@@ -88,6 +88,7 @@ nexus.delete(url, body)
 ```
 >Sends a RESTful request to a certain URL (without domain) and returns a promise containing the response data.
 
+**Note:** this method returns the full response object. The response data is in `res.body` and is a `string` type that may need to be parsed before usage. <br>
 See the [blitz-js-query](https://github.com/nexus-devs/npm-blitz-query) documentation for further details on sending RESTful methods.
 
 <br>
