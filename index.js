@@ -24,11 +24,7 @@ class Nexus extends Blitz {
      * Get primary stats for specific item
      */
     getItemStats(name) {
-        return new Promise((resolve, reject) => {
-            this.get(`/warframe/v1/items/${name}/statistics`)
-                .then(res => resolve(res))
-                .catch(err => reject(err))
-        })
+        return this.get(`/warframe/v1/items/${name}/statistics`)
     }
 
 
@@ -36,11 +32,7 @@ class Nexus extends Blitz {
      * Get item price list
      */
     getItemPrices() {
-        return new Promise((resolve, reject) => {
-            this.get("/warframe/v1/items/prices")
-                .then(res => resolve(res))
-                .catch(err => reject(err))
-        })
+        return this.get("/warframe/v1/items/prices")
     }
 
 
@@ -48,11 +40,7 @@ class Nexus extends Blitz {
      * Item distribution (supply/demand)
      */
     getItemDistribution() {
-        return new Promise((resolve, reject) => {
-            this.get("/warframe/v1/items/distribution")
-                .then(res => resolve(res))
-                .catch(err => reject(err))
-        })
+        return this.get("/warframe/v1/items/distribution")
     }
 
 
@@ -60,11 +48,7 @@ class Nexus extends Blitz {
      * Status of all connected bots
      */
     getBotStatus() {
-        return new Promise((resolve, reject) => {
-            this.get("/warframe/v1/bots/status")
-                .then(res => resolve(res))
-                .catch(err => reject(err))
-        })
+        return this.get("/warframe/v1/bots/status")
     }
 
 
@@ -72,11 +56,7 @@ class Nexus extends Blitz {
      * Status of all connected bots
      */
     getPlayerProfile(username) {
-        return new Promise((resolve, reject) => {
-            this.get(`/warframe/v1/players/${username}/profile`)
-                .then(res => resolve(res))
-                .catch(err => reject(err))
-        })
+        return this.get(`/warframe/v1/players/${username}/profile`)})
     }
 }
 
