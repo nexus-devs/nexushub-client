@@ -67,7 +67,7 @@ nexus.getItemDistribution()
 ```js
 nexus.getPlayerProfile(name)
 ```
->Returns ingame player profile for given user.
+>Returns the ingame player profile for given user.
 
 <br>
 
