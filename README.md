@@ -73,7 +73,7 @@ nexus.getPlayerProfile(name)
 
 ### Bot Status
 ```js
-nexus.getBotStatus(name)
+nexus.getBotStatus()
 ```
 >Returns the upstatus for all connected bots.
 
