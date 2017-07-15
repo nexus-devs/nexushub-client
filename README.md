@@ -85,7 +85,7 @@ Subscriptions allow you to receive real-time data whenever an item is updated. U
 ```js
 nexus.subscribe(endpoint)
 ```
->Subscribe to updates on a specific endpoint. Updates can be listened to via `blitz.on(endpoint, fn)`.
+>Subscribe to updates on a specific endpoint. Updates can be listened to via `nexus.on(endpoint, fn)`.
 
 | Argument | Description | Default |
 |:------------- |:------------- |:------------- |
