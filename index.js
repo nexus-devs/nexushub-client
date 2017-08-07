@@ -56,7 +56,7 @@ class Nexus extends Blitz {
      * Status of all connected bots
      */
     getPlayerProfile(username) {
-        return this.get(`/warframe/v1/players/${username}/profile`)})
+        return this.get(`/warframe/v1/players/${username}/profile`)
     }
 }
 
