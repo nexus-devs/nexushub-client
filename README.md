@@ -23,8 +23,8 @@ nexus.get("/warframe/v1/items").then(res => console.log(res.body)) // list of al
 
 ## Configuration
 ```javascript
-const Blitz = require("blitz-js-query")
-const blitz = new Blitz({key: value})
+const Nexus = require("nexus-stats-api")
+const nexus = new Nexus({key: value})
 ```
 
 | Key           | Default         | Description   |
@@ -39,11 +39,43 @@ const blitz = new Blitz({key: value})
 <br>
 
 ## API
-### Items
+### Item Price Stats
 ```js
 nexus.getItemStats(name)
 ```
->Get basic item statistics for a given item. Returns a promise with a statistics object.
+>Get detailed item statistics for a given item. Returns a promise with a statistics object.
+
+<br>
+
+### Item Price List
+```js
+nexus.getItemPrices()
+```
+>Returns a list of all items and their overall price stats in the last week.
+
+<br>
+
+### Supply & Demand
+```js
+nexus.getItemDistribution()
+```
+>Returns a list of all items and their supply/demand values.
+
+<br>
+
+### Player Profiles
+```js
+nexus.getPlayerProfile(name)
+```
+>Returns the ingame player profile for given user.
+
+<br>
+
+### Bot Status
+```js
+nexus.getBotStatus()
+```
+>Returns the upstatus for all connected bots.
 
 <br>
 
@@ -53,7 +85,7 @@ Subscriptions allow you to receive real-time data whenever an item is updated. U
 ```js
 nexus.subscribe(endpoint)
 ```
->Subscribe to updates on a specific endpoint. Updates can be listened to via `blitz.on(endpoint, fn)`.
+>Subscribe to updates on a specific endpoint. Updates can be listened to via `nexus.on(endpoint, fn)`.
 
 | Argument | Description | Default |
 |:------------- |:------------- |:------------- |
