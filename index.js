@@ -1,63 +1,52 @@
-'use strict'
-
-const extend = require('deep-extend')
 const Blitz = require('blitz-js-query')
 
 class Nexus extends Blitz {
+  /**
+   * Merge default options with client options
+   */
+  constructor(options) {
+    options = Object.assign({
+      api_url: "https://api.nexus-stats.com",
+      auth_url: "https://auth.nexus-stats.com"
+    }, options)
 
-    /**
-     * Merge default options with client options
-     */
-    constructor(options) {
+    super(options)
+  }
 
-        // Extend with modified Blitz Default Values
-        options = extend({
-            api_url: "https://api.nexus-stats.com",
-            auth_url: "https://auth.nexus-stats.com"
-        }, options)
+  /**
+   * Get primary stats for specific item
+   */
+  getItemStats(name) {
+    return this.get(`/warframe/v1/items/${name}/statistics`)
+  }
 
-        super(options)
-    }
+  /**
+   * Get item price list
+   */
+  getItemPrices() {
+    return this.get("/warframe/v1/items/prices")
+  }
 
+  /**
+   * Item distribution (supply/demand)
+   */
+  getItemDistribution() {
+    return this.get("/warframe/v1/items/distribution")
+  }
 
-    /**
-     * Get primary stats for specific item
-     */
-    getItemStats(name) {
-        return this.get(`/warframe/v1/items/${name}/statistics`)
-    }
+  /**
+   * Status of all connected bots
+   */
+  getBotStatus() {
+    return this.get("/warframe/v1/bots/status")
+  }
 
-
-    /**
-     * Get item price list
-     */
-    getItemPrices() {
-        return this.get("/warframe/v1/items/prices")
-    }
-
-
-    /**
-     * Item distribution (supply/demand)
-     */
-    getItemDistribution() {
-        return this.get("/warframe/v1/items/distribution")
-    }
-
-
-    /**
-     * Status of all connected bots
-     */
-    getBotStatus() {
-        return this.get("/warframe/v1/bots/status")
-    }
-
-
-    /**
-     * Status of all connected bots
-     */
-    getPlayerProfile(username) {
-        return this.get(`/warframe/v1/players/${username}/profile`)
-    }
+  /**
+   * Status of all connected bots
+   */
+  getPlayerProfile(username) {
+    return this.get(`/warframe/v1/players/${username}/profile`)
+  }
 }
 
 module.exports = Nexus
