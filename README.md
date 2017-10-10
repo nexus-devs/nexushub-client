@@ -31,8 +31,8 @@ const nexus = new Nexus({key: value})
 |:------------- |:------------- |:------------- |
 | use_socket | true | Whether or not to use Socket.io as standard request engine. Setting to false uses http. Subscriptions will use Socket.io regardless. |
 | namespace | "/" | Socket.io namespace to connect to |
-| user_key | null | User key obtained via Auth-Node registration |
-| user_secret | null | User secret obtained via Auth-Node |
+| user_key | null | (optional) User key obtained via Auth-Node registration |
+| user_secret | null | (optional) User secret obtained via Auth-Node |
 | ignore_limiter | false | Whether or not to disable the default rate limit adaptions. Disabling this only makes sense if you connect as a user who won't face rate limits. If you disable it anyway, expect all your requests to get blocked. |
 
 <br>
