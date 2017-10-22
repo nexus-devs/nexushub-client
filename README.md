@@ -39,6 +39,8 @@ const nexus = new Nexus({key: value})
 <br>
 
 ## API
+For response formats, check the [provisional nexus-stats docs](https://drive.google.com/open?id=16rbyQAG1cgQhwfFfXcHqn-o8txZ5dAZBf4hzr3VeJJE)
+
 ### Item Price Stats
 ```js
 nexus.getItemStats(name)
