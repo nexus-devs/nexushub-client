@@ -27,7 +27,7 @@ const items = await nexus.get('/warframe/v1/items') // Get a list of all items.
 <br>
 
 ## API
-For a list of all API endpoints, check out the [official documentation](https://staging.nexushub.co/developers/api).
+For a list of all API endpoints, check out the [official documentation](https://staging.nexushub.co/developers).
 
 <br>
 
