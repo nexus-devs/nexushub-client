@@ -1,99 +1,177 @@
-[![Nexus Stats API Package](/banner.png)](https://github.com/nexus-devs)
+[![Nexus Stats API Package](/banner.svg)](https://github.com/nexus-devs)
 
-<p align="center">Nodejs package to connect to <a href="https://nexus-stats.com">api.nexus-stats.com</a>, based on <a href="https://github.com/nexus-devs/npm-blitz-query">blitz-js-query</a></p>
+<p align='center'>Nodejs package to connect to <a href='https://api.nexushub.co'>api.nexushub.co</a>, based on <a href='https://github.com/cubic-js/cubic-client'>cubic-client</a>.</p>
 
 ##
 
 <br>
 
 ## Installation
-`npm install nexus-stats-api`
+```
+npm i nexushub-client
+```
 
 <br>
 
 ## Usage
 ```js
-const Nexus = require("nexus-stats-api")
-const nexus = new Nexus()
+const Nexus = require('nexushub-client')
+const nexus = new Nexus({
+  // auth_url: https://auth.staging.nexushub.co // ONLY use this if you want to test new features
+  // api_url: https://api.staging.nexushub.co
+})
 
-nexus.get("/warframe/v1/items").then(res => console.log(res.body)) // list of all stored items
+const items = await nexus.get('/warframe/v1/items') // Get a list of all items.
 ```
+
+<br>
+
+## API
+For a list of all API endpoints, check out the [official documentation](https://staging.nexushub.co/developers/api).
 
 <br>
 
 ## Configuration
 ```javascript
-const Nexus = require("nexus-stats-api")
-const nexus = new Nexus({key: value})
+const Nexus = require('nexus-stats-api')
+const nexus = new Nexus({ key: value })
 ```
 
 | Key           | Default         | Description   |
 |:------------- |:------------- |:------------- |
-| use_socket | true | Whether or not to use Socket.io as standard request engine. Setting to false uses http. Subscriptions will use Socket.io regardless. |
-| namespace | "/" | Socket.io namespace to connect to |
+| namespace | '/' | Socket.io namespace to connect to |
 | user_key | null | (optional) User key obtained via Auth-Node registration |
 | user_secret | null | (optional) User secret obtained via Auth-Node |
-| ignore_limiter | false | Whether or not to disable the default rate limit adaptions. Disabling this only makes sense if you connect as a user who won't face rate limits. If you disable it anyway, expect all your requests to get blocked. |
 
 <br>
-<br>
 
-## API
-For response formats, check the [provisional nexus-stats docs](https://drive.google.com/open?id=16rbyQAG1cgQhwfFfXcHqn-o8txZ5dAZBf4hzr3VeJJE)
-
-### Item Price Stats
+### RESTful methods
 ```js
-nexus.getItemStats(name)
+nexus.get(url)
 ```
->Get detailed item statistics for a given item. Returns a promise with a statistics object.
-
-<br>
-
-### Item Price List
-```js
-nexus.getItemPrices()
-```
->Returns a list of all items and their overall price stats in the last week.
-
-<br>
-
-### Supply & Demand
-```js
-nexus.getItemDistribution()
-```
->Returns a list of all items and their supply/demand values.
-
-<br>
-
-### Player Profiles
-```js
-nexus.getPlayerProfile(name)
-```
->Returns the ingame player profile for given user.
-
-<br>
-
-### Bot Status
-```js
-nexus.getBotStatus()
-```
->Returns the upstatus for all connected bots.
-
-<br>
-
-### Subscriptions
-Subscriptions allow you to receive real-time data whenever an item is updated. Updates trigger on in-game requests.
-
-```js
-nexus.subscribe(endpoint)
-```
->Subscribe to updates on a specific endpoint. Updates can be listened to via `nexus.on(endpoint, fn)`.
+>Sends a GET request to the API-Node
 
 | Argument | Description | Default |
 |:------------- |:------------- |:------------- |
-| endpoint | URL to listen for updates on e.g. `/warframe/v1/items/frost prime/statistics` | None |
+| url | URL to request, without domain. e.g. `/foo`. | None |
 
 <br>
+
+```js
+nexus.post(url, body)
+```
+>Sends a POST request to the API-Node
+
+| Argument | Description | Default |
+|:------------- |:------------- |:------------- |
+| url | URL to request, without domain. e.g. `/foo`. | None |
+| body | Data to send to endpoint. Can be any data type. | None |
+
+<br>
+
+```js
+nexus.put(url, body)
+```
+>Sends a PUT request to the API-Node
+
+| Argument | Description | Default |
+|:------------- |:------------- |:------------- |
+| url | URL to request, without domain. e.g. `/foo`. | None |
+| body | Data to send to endpoint. Can be any data type. | None |
+
+<br>
+
+```js
+nexus.patch(url, body)
+```
+>Sends a PATCH request to the API-Node
+
+| Argument | Description | Default |
+|:------------- |:------------- |:------------- |
+| url | URL to request, without domain. e.g. `/foo`. | None |
+| body | Data to send to endpoint. Can be any data type. | None |
+
+<br>
+
+```js
+nexus.delete(url, body)
+```
+>Sends a DELETE request to the API-Node
+
+| Argument | Description | Default |
+|:------------- |:------------- |:------------- |
+| url | URL to request, without domain. e.g. `/foo`. | None |
+| body | Data to send to endpoint. Can be any data type. | None |
+
+<br>
+
+### Pub/Sub
+
+```js
+nexus.subscribe(endpoint, fn)
+```
+>Subscribe to updates on a specific endpoint.
+
+| Argument | Description | Default |
+|:------------- |:------------- |:------------- |
+| endpoint | URL to listen for updates on, without domain. e.g. `'/foo'` | None |
+| fn | Function to run when updates are received. Takes the new data as argument. | None |
+
+<br>
+
+### Authentication
+```js
+nexus.login(user, secret)
+```
+>Re-authorizes as a specific user at runtime. Usually users should be logged in
+through the constructor options.
+
+| Argument | Description | Default |
+|:------------- |:------------- |:------------- |
+| user | User id, equal to `user_key` when registering. | None |
+| secret | User password, equal to `user_secret` when registering. | None |
+
+<br>
+
+```js
+nexus.setRefreshToken(token)
+```
+>Manually set the refresh token. This way user credentials needn't be exposed.
+
+| Argument | Description | Default |
+|:------------- |:------------- |:------------- |
+| token | `refresh_token` to use. | None |
+
+<br>
+
+```js
+nexus.getRefreshToken()
+```
+>Retrieve current refresh token. Will await any existing authentication
+process. Useful if the initial login can be done through user/pass but
+the refresh token needs to be stored for subsequent logins.
+
+<br>
+
+```js
+nexus.setAccessToken(token)
+```
+>Manually set the access token. This will expire on the next refresh.
+
+| Argument | Description | Default |
+|:------------- |:------------- |:------------- |
+| token | `access_token` to use. | None |
+
+<br>
+
+```js
+nexus.getRefreshToken()
+```
+>Retrieve current access token. Will await any existing authentication process.
+
+<br>
+
+### Socket.io
 
 ```js
 nexus.on(ev, fn)
@@ -102,29 +180,23 @@ nexus.on(ev, fn)
 
 | Argument | Description | Default |
 |:------------- |:------------- |:------------- |
-| ev | Event name. Usually a subscribed endpoint URL. | None |
+| ev | Event name. | None |
 | fn | Function to execute on event trigger | None |
 
 <br>
 
-### RESTful methods
 ```js
-// GET Request
-nexus.get(url)
-
-// POST, PUT, PATCH Requests
-nexus.post(url, body)
-nexus.put(url, body)
-nexus.patch(url, body)
-
-// DELETE Request
-nexus.delete(url, body)
+nexus.emit(ev, data)
 ```
->Sends a RESTful request to a certain URL (without domain) and returns a promise containing the response data.
+>Emits event via Socket.io client to server
 
-See the [blitz-js-query](https://github.com/nexus-devs/npm-blitz-query) documentation for further details on sending RESTful methods.
+| Argument | Description | Default |
+|:------------- |:------------- |:------------- |
+| ev | Event name. | None |
+| data | Data to transmit. Can be any data type. | None |
 
 <br>
 
+
 ## License
-[MIT](https://github.com/nexus-devs/npm-blitz-query/blob/master/LICENSE.md)
+[MIT](/LICENSE.md)
