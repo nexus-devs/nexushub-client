@@ -1,11 +1,11 @@
 {
-  "name": "nexus-stats-api",
+  "name": "nexushub-client",
   "version": "1.0.0",
-  "description": "HTTP/Socket.io adapter for api.nexus-stats.com",
+  "description": "Client package for Nexushub",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nexus-devs/npm-nexus-api"
+    "url": "https://github.com/nexus-devs/nexushub-client"
   },
   "scripts": {
     "test": "test"
