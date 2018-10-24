@@ -5,10 +5,13 @@ class Nexus extends Client {
    * Merge default options with client options
    */
   constructor(options) {
-    options = Object.assign({
-      api_url: "https://api.nexus-stats.com",
-      auth_url: "https://auth.nexus-stats.com"
-    }, options)
+    options = {
+      ...{
+        api_url: "wss://api.staging.nexushub.co/ws",
+        auth_url: "wss://auth.staging.nexushub.co/ws"
+      },
+      ...options
+    }
 
     super(options)
   }
