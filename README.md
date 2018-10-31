@@ -17,7 +17,8 @@ npm i nexushub-client
 ```js
 const Nexus = require('nexushub-client')
 const nexus = new Nexus({
-  // auth_url: https://auth.staging.nexushub.co // ONLY use this if you want to test new features
+  // ONLY use this if you want to test new features
+  // auth_url: https://auth.staging.nexushub.co 
   // api_url: https://api.staging.nexushub.co
 })
 
