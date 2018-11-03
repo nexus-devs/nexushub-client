@@ -170,34 +170,6 @@ nexus.getRefreshToken()
 ```
 >Retrieve current access token. Will await any existing authentication process.
 
-<br>
-
-### Socket.io
-
-```js
-nexus.on(ev, fn)
-```
->Listens to specific Socket.io event, then runs the given function with the received data
-
-| Argument | Description | Default |
-|:------------- |:------------- |:------------- |
-| ev | Event name. | None |
-| fn | Function to execute on event trigger | None |
-
-<br>
-
-```js
-nexus.emit(ev, data)
-```
->Emits event via Socket.io client to server
-
-| Argument | Description | Default |
-|:------------- |:------------- |:------------- |
-| ev | Event name. | None |
-| data | Data to transmit. Can be any data type. | None |
-
-<br>
-
 
 ## License
 [MIT](/LICENSE.md)
