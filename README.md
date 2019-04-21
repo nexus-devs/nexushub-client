@@ -40,7 +40,6 @@ const nexus = new Nexus({ key: value })
 
 | Key           | Default         | Description   |
 |:------------- |:------------- |:------------- |
-| namespace | '/' | Socket.io namespace to connect to |
 | user_key | null | (optional) User key obtained via Auth-Node registration |
 | user_secret | null | (optional) User secret obtained via Auth-Node |
 
