@@ -13,6 +13,6 @@
   "author": "Kaptard",
   "license": "MIT",
   "dependencies": {
-    "cubic-client": "^2.0.2"
+    "cubic-client": "^3.0.2"
   }
 }
